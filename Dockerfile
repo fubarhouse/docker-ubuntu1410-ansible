@@ -2,8 +2,8 @@ FROM ubuntu:14.10
 MAINTAINER Karl Hepworth
 
 # Install dependencies.
+RUN sudo sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
        python-software-properties \
        software-properties-common \
