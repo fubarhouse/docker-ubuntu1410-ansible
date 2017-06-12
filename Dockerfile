@@ -3,6 +3,7 @@ MAINTAINER Karl Hepworth
 
 # Install dependencies.
 RUN apt-get update \
+    apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
        python-software-properties \
        software-properties-common \
