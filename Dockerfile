@@ -19,11 +19,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
 # Install Ansible
-RUN git clone https://github.com/ansible/ansible.git --recursive ~/ansible \
-    && cd ~/ansible \
-    && make \
-    && make install \
-    && which ansible
+RUN pip install ansible
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
