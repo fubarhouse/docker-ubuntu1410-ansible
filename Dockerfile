@@ -19,7 +19,11 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
 # Install Ansible
-RUN pip install ansible
+RUN git clone https://github.com/ansible/ansible.git --recursive ~/ansible \
+    && cd ~/ansible \
+    && make \
+    && make install \
+    && which ansible
 
 # Check Ansible Version
 RUN ansible --version
