@@ -11,7 +11,7 @@ RUN apt-get update \
        python python-yaml python-paramiko python-jinja2 python-httplib2 \
        python-software-properties software-properties-common \
        rsyslog sudo \
-       curl apt-transport-https \
+       curl wget apt-transport-https \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
