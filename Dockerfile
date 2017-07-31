@@ -36,11 +36,13 @@ RUN cd /usr/src \
     && make altinstall
 
 # Install Ansible
-RUN git clone https://github.com/ansible/ansible.git --recursive ~/ansible \
-    && cd ~/ansible \
-    && make \
-    && make install \
-    && which ansible
+RUN add-apt-repository -y ppa:ansible/ansible \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+     ansible \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
+  && apt-get clean
 
 # Check Ansible Version
 RUN ansible --version
