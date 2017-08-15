@@ -28,12 +28,6 @@ RUN apt-get update \
        libssl-dev libsqlite3-dev tk-dev libgdbm-dev \
        libc6-dev libbz2-dev \
     && apt-get clean
-RUN cd /usr/src \
-    && wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz \
-    && tar xzf Python-2.7.13.tgz \
-    && cd Python-2.7.13 \
-    && ./configure \
-    && make altinstall
 
 # Install Ansible
 RUN add-apt-repository -y ppa:ansible/ansible \
@@ -51,5 +45,4 @@ COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
 # Install Ansible inventory file
-RUN mkdir /etc/ansible
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
