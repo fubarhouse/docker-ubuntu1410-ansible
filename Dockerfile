@@ -6,7 +6,7 @@ RUN sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /e
 
 # Add Python PPA
 RUN apt-get update
-RUN apt-get install software-properties-common python-software-properties
+RUN apt-get install -y software-properties-common python-software-properties
 RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
 
 # Install dependencies.
