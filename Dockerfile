@@ -31,12 +31,6 @@ RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
-# On the Utopic Unicorn we actually need a later version of python...
-RUN apt-get update
-RUN apt-get build-dep -y python2.7
-RUN apt-get install python2.7
-RUN apt-get clean
-
 # Install Ansible
 RUN pip install urllib3 cryptography
 RUN pip install --upgrade pip virtualenv virtualenvwrapper
