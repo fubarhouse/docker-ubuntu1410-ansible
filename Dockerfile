@@ -7,20 +7,16 @@ RUN sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /e
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       python-pip make git curl wget \
-       python-yaml python-paramiko python-jinja2 python-httplib2 \
+       make git curl wget libssl-dev libffi-dev \
        rsyslog sudo build-essential gcc rsync openssh-server openssl \
-       python-setuptools libssl-dev libffi-dev \
        curl wget apt-transport-https \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
-RUN pip install setuptools
-RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
-# Add Python PPA
+# Add Python PPA & Setup Python.
 RUN apt-get remove -y python
 RUN apt-get update
 RUN apt-get install -y software-properties-common python-software-properties
@@ -28,7 +24,11 @@ RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
 
 RUN apt-get install -y --force-yes python2.7 python2.7-minimal \
     libpython2.7-stdlib libpython2.7-minimal libpython2.7 \
-    libpython2.7-dev python2.7-dev
+    libpython2.7-dev python2.7-dev python-pip python-yaml \
+    python-paramiko python-jinja2 python-httplib2 python-setuptools
+
+RUN pip install setuptools
+RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 
 # Install Ansible
 RUN pip install urllib3 cryptography
