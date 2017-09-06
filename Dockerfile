@@ -4,6 +4,8 @@ MAINTAINER Karl Hepworth
 # Convert sources to legacy.
 RUN sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
+RUN apt-get install software-properties-common python-software-properties
+
 # Add Python PPA
 RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
 
@@ -12,7 +14,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        python-pip make git curl wget \
        python python-yaml python-paramiko python-jinja2 python-httplib2 \
-       python-software-properties software-properties-common \
        rsyslog sudo build-essential gcc rsync openssh-server openssl \
        python-dev python-setuptools libssl-dev libffi-dev \
        curl wget apt-transport-https \
