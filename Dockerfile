@@ -4,6 +4,9 @@ MAINTAINER Karl Hepworth
 # Convert sources to legacy.
 RUN sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
+# Add Python PPA
+RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
+
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -28,9 +31,9 @@ RUN apt-get install python2.7
 RUN apt-get clean
 
 # Install Ansible
- RUN pip install urllib3 cryptography
- RUN pip install --upgrade pip virtualenv virtualenvwrapper
- RUN pip install ansible==2.3
+RUN pip install urllib3 cryptography
+RUN pip install --upgrade pip virtualenv virtualenvwrapper
+RUN pip install ansible==2.3
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
