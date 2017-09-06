@@ -9,13 +9,19 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common python-software-properties
 RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
 
+# Install Python
+
+RUN apt-get install -y --force-yes python2.7 python2.7-minimal \
+    libpython2.7-stdlib libpython2.7-minimal libpython2.7 \
+    libpython2.7-dev python2.7-dev
+
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        python-pip make git curl wget \
-       python python-yaml python-paramiko python-jinja2 python-httplib2 \
+       python-yaml python-paramiko python-jinja2 python-httplib2 \
        rsyslog sudo build-essential gcc rsync openssh-server openssl \
-       python-dev python-setuptools libssl-dev libffi-dev \
+       python-setuptools libssl-dev libffi-dev \
        curl wget apt-transport-https \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
