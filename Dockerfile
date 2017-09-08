@@ -35,7 +35,7 @@ RUN wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz \
     && cd Python-2.7.13/ && ./configure --prefix /usr/local/lib/python2.7.13 --enable-ipv6 \
     && make \
     && make install \
-    && echo 'export PATH="${PATH}:/usr/local/lib/python2.7.13/bin/"' >> /root/.profile
+    && echo 'export PATH="/usr/local/lib/python2.7.13/bin/:${PATH}"' >> /root/.profile
 
 # Install Ansible
 RUN pip install urllib3 cryptography
