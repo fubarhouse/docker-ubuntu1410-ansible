@@ -30,12 +30,12 @@ RUN pip install setuptools
 RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 
 # Upgrade Python the hard way.
-RUN wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
-RUN tar xfz Python-2.7.13.tgz
-RUN cd Python-2.7.13/ && /configure --prefix /usr/local/lib/python2.7.13 --enable-ipv6
-RUN make
-RUN make install
-RUN export PATH="/usr/local/lib/python2.7.13/bin/:${PATH}"
+RUN wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz \
+    && tar xfz Python-2.7.13.tgz \
+    && cd Python-2.7.13/ && ./configure --prefix /usr/local/lib/python2.7.13 --enable-ipv6 \
+    && make \
+    && make install \
+    && export PATH="/usr/local/lib/python2.7.13/bin/:${PATH}"
 
 # Install Ansible
 RUN pip install urllib3 cryptography
