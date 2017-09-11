@@ -18,24 +18,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 
 # Add Python PPA & Setup Python.
 RUN apt-get update
-RUN apt-get install -y software-properties-common python-software-properties
-RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
-
-RUN apt-get install -y --force-yes python2.7 python2.7-minimal \
-    libpython2.7-stdlib libpython2.7-minimal libpython2.7 \
-    libpython2.7-dev python2.7-dev python-pip python-yaml \
-    python-paramiko python-jinja2 python-httplib2 python-setuptools
-
-RUN pip install setuptools
-RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
-
-# Upgrade Python the hard way.
-RUN wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz \
-    && tar xfz Python-2.7.13.tgz \
-    && cd Python-2.7.13/ && ./configure --prefix /usr/local/lib/python2.7.13 --enable-ipv6 \
-    && make \
-    && make install
-ENV PATH="/usr/local/lib/python2.7.13/bin/:${PATH}"
+RUN apt-get install -y software-properties-common
 
 # Install Ansible
 RUN pip install urllib3 cryptography
