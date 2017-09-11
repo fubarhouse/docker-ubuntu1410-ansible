@@ -28,5 +28,5 @@ RUN mkdir /etc/ansible
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
 # Report some information
-RUN python --version
-RUN ansible --version
+# RUN python --version
+# RUN ansible --version
