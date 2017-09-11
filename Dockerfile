@@ -20,11 +20,6 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 
-# Install Ansible
-RUN pip install urllib3 cryptography
-RUN pip install --upgrade pip virtualenv virtualenvwrapper
-RUN pip install ansible==2.3
-
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
