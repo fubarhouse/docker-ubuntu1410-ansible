@@ -32,7 +32,7 @@ RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 # Install Ansible
 RUN pip install urllib3 cryptography
 RUN pip install --upgrade pip virtualenv virtualenvwrapper
-RUN pip install ansible==2.3
+RUN pip install ansible
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
