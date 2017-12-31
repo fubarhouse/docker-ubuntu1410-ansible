@@ -18,7 +18,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 
 # Setup Python.
 RUN apt-get update
-RUN apt-get install -y build-dep python-openssl software-properties-common python-software-properties
+RUN apt-get install -y python-openssl software-properties-common python-software-properties
 
 RUN apt-get install -y python2.7 python-pip
 
