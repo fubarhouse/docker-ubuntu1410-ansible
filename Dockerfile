@@ -30,7 +30,6 @@ RUN pip install setuptools
 RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 
 # Install Ansible
-RUN pip install urllib3 cryptography
 RUN pip install --upgrade pip virtualenv virtualenvwrapper
 RUN pip install ansible
 
