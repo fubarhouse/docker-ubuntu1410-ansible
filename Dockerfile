@@ -39,7 +39,7 @@ RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 # Upgrade legacy Python
 RUN add-apt-repository ppa:fkrull/deadsnakes-python2.7
 RUN apt-get update
-RUN apt-get install -y python2.7
+RUN apt-get install -y --force-yes python2.7
 RUN apt-get clean
 
 # Report some information
